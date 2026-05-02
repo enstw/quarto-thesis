@@ -28,6 +28,7 @@ file, render it, and then gradually add themes, diagrams, and slide features.
 │   └── plantuml-to-svg.ps1      # Windows PowerShell helper
 └── docs/
     ├── install.md
+    ├── case-study-presentation-pdf.md
     ├── themes.md
     └── plantuml.md
 ```
@@ -96,6 +97,7 @@ The scripts try, in order:
 ## Documentation
 
 - [Installation guide](docs/install.md)
+- [Case study: how the Taiwan-drills Beamer PDF is generated](docs/case-study-presentation-pdf.md)
 - [Theme browsing and customization](docs/themes.md)
 - [PlantUML to SVG workflow](docs/plantuml.md)
 

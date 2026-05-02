@@ -140,8 +140,8 @@ scripts/plantuml-to-svg.sh diagrams/quarto-flow.puml diagrams/quarto-flow.svg
 ### Windows
 
 ```powershell
-quarto render slides\slide-styles.qmd
-.\scripts\plantuml-to-svg.ps1 diagrams\quarto-flow.puml diagrams\quarto-flow.svg
+quarto render slides/slide-styles.qmd
+.\scripts\plantuml-to-svg.ps1 .\diagrams\quarto-flow.puml .\diagrams\quarto-flow.svg
 ```
 
 :::

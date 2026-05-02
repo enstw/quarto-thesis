@@ -28,6 +28,14 @@ quarto render presentation.qmd --to revealjs
 quarto render presentation.qmd --to beamer
 ```
 
+On Windows PowerShell, the same Quarto commands work from the repository root.
+The repository also includes an end-to-end check:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\render-workflow.ps1
+```
+
 The output names come from the source filename:
 
 | Source | Format | Output |

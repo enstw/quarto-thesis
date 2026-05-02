@@ -37,7 +37,8 @@ scripts/plantuml-to-svg.sh diagrams/quarto-flow.puml diagrams/quarto-flow.svg
 Windows PowerShell:
 
 ```powershell
-.\scripts\plantuml-to-svg.ps1 diagrams\quarto-flow.puml diagrams\quarto-flow.svg
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\plantuml-to-svg.ps1 .\diagrams\quarto-flow.puml .\diagrams\quarto-flow.svg
 ```
 
 ## Render Locally
@@ -94,3 +95,8 @@ For PDF rendering, Quarto may need an SVG converter. On macOS, install
 ```bash
 brew install librsvg
 ```
+
+On Windows, the Quarto installer plus TinyTeX is usually enough for this
+repository because the generated SVG is already committed. If SVG conversion
+fails during PDF rendering, first rerun `quarto check`; then install the missing
+tool named in Quarto's error message.

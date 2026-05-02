@@ -1,0 +1,13 @@
+* text=auto
+
+*.md text eol=lf
+*.qmd text eol=lf
+*.yml text eol=lf
+*.scss text eol=lf
+*.tex text eol=lf
+*.puml text eol=lf
+*.svg text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=crlf
+
+*.ttf binary

@@ -92,6 +92,13 @@ If local PlantUML is not available, the scripts can fall back to Kroki:
 scripts/plantuml-to-svg.sh diagrams/quarto-flow.puml diagrams/quarto-flow.svg
 ```
 
+On Windows PowerShell:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\plantuml-to-svg.ps1 .\diagrams\quarto-flow.puml .\diagrams\quarto-flow.svg
+```
+
 ## 5. Useful Checks
 
 ```bash
@@ -100,6 +107,21 @@ quarto tools
 quarto render presentation.qmd --to beamer
 quarto render presentation.qmd --to revealjs
 quarto render slides/slide-styles.qmd
+```
+
+Windows PowerShell users can run the repository workflow check from the repo
+root:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\render-workflow.ps1
+```
+
+If TinyTeX is not installed yet, skip PDF rendering while checking the HTML and
+diagram workflow:
+
+```powershell
+.\scripts\render-workflow.ps1 -SkipPdf
 ```
 
 If PDF rendering fails with a missing LaTeX package, TinyTeX usually installs it

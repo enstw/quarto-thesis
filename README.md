@@ -29,7 +29,8 @@ file, render it, and then gradually add themes, diagrams, and slide features.
 │   └── quarto-flow.svg          # Pre-rendered SVG used by the examples
 ├── scripts/
 │   ├── plantuml-to-svg.sh       # macOS/Linux PlantUML -> SVG helper
-│   └── plantuml-to-svg.ps1      # Windows PowerShell helper
+│   ├── plantuml-to-svg.ps1      # Windows PowerShell PlantUML -> SVG helper
+│   └── render-workflow.ps1      # Windows PowerShell end-to-end workflow check
 └── docs/
     ├── install.md
     ├── main-flow.md
@@ -85,6 +86,24 @@ quarto preview slides/slide-styles.qmd
 
 Outputs are written to `_output/`.
 
+## Windows PowerShell Workflow
+
+From a fresh PowerShell window at the repository root:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\render-workflow.ps1
+```
+
+That script checks Quarto, refreshes the PlantUML SVG, renders
+`presentation.qmd` to Reveal.js HTML and Beamer PDF, renders
+`examples/dual-output.qmd` to HTML and PDF, and renders the slide-style gallery.
+If TinyTeX is not installed yet, run the HTML-only path:
+
+```powershell
+.\scripts\render-workflow.ps1 -SkipPdf
+```
+
 ## Rebuild Diagrams
 
 The repository includes a pre-rendered SVG so the examples render offline. To
@@ -97,7 +116,7 @@ scripts/plantuml-to-svg.sh diagrams/quarto-flow.puml diagrams/quarto-flow.svg
 On Windows PowerShell:
 
 ```powershell
-.\scripts\plantuml-to-svg.ps1 diagrams\quarto-flow.puml diagrams\quarto-flow.svg
+.\scripts\plantuml-to-svg.ps1 .\diagrams\quarto-flow.puml .\diagrams\quarto-flow.svg
 ```
 
 The scripts try, in order:

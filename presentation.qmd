@@ -17,7 +17,10 @@ format:
     highlight-style: github
   beamer:
     theme: metropolis
+    colortheme: default
     pdf-engine: xelatex
+    include-in-header:
+      - assets/tex/presentation-preamble.tex
     aspectratio: 169
     navigation: empty
     colorlinks: true
@@ -55,6 +58,17 @@ quarto render presentation.qmd --to revealjs
 | HTML slides | `revealjs` | `presentation.html` | Quarto |
 | SVG diagrams | referenced asset | `.svg` | PlantUML or Kroki |
 
+## Beamer PDF Customization
+
+The Beamer PDF loads `assets/tex/presentation-preamble.tex`.
+
+That preamble adds:
+
+- top section navigation bar
+- Metropolis title accent line
+- bottom three-part information bar
+- ENS CJK font setup
+
 ## Columns
 
 :::: {.columns}
@@ -68,6 +82,8 @@ format:
     theme: [default, themes/thesis.scss]
   beamer:
     theme: metropolis
+    include-in-header:
+      - assets/tex/presentation-preamble.tex
 ```
 :::
 

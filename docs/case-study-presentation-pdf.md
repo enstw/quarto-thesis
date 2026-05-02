@@ -115,6 +115,14 @@ lang: zh-Hant
 - `project.render` 指定預設輸入檔是 `presentation.qmd`。
 - `output-dir: _output` 讓 Quarto 把 `presentation.pdf` 寫到 `work/_output/`。
 
+`preamble.tex` 是視覺客製化的核心。它不是 Quarto YAML 內建設定，而是
+Beamer/LaTeX template override：
+
+- 頁首：Darmstadt 式 section navigation dots。
+- 內文標題：保留 Metropolis frame-title accent line。
+- 頁尾：Boadilla 式三段資訊列，分別放 title、author、date/page count。
+- 字型：用 XeLaTeX + `xeCJK` 載入 ENSFont。
+
 ## Build Command
 
 從案例專案根目錄執行：

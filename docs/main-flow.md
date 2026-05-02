@@ -17,6 +17,8 @@ format:
   beamer:
     theme: metropolis
     pdf-engine: xelatex
+    include-in-header:
+      - assets/tex/presentation-preamble.tex
 ```
 
 Use an explicit render target while learning:
@@ -32,6 +34,27 @@ The output names come from the source filename:
 |---|---|---|
 | `presentation.qmd` | `revealjs` | `_output/presentation.html` |
 | `presentation.qmd` | `beamer` | `_output/presentation.pdf` |
+
+## Beamer Customization
+
+The PDF output intentionally loads:
+
+```yaml
+include-in-header:
+  - assets/tex/presentation-preamble.tex
+```
+
+That preamble reproduces the custom Beamer styling used in the Taiwan-drills
+project:
+
+- top miniframes-style section navigation bar
+- Metropolis frame-title accent line
+- bottom three-part information bar for title, author, date, and page count
+- XeLaTeX CJK font setup through `assets/fonts/ENSFont-Regular.ttf`
+
+This is the customization visible in the original `presentation.pdf`: the top
+bar tracks sections, the frame title keeps the Metropolis accent rule, and the
+bottom bar holds title, author, date, and slide count.
 
 ## Why `--to beamer` Instead of `--to pdf`
 

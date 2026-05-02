@@ -21,6 +21,9 @@ file, render it, and then gradually add themes, diagrams, and slide features.
 │   └── slide-styles.qmd         # Reveal.js deck demonstrating slide styles
 ├── themes/
 │   └── thesis.scss              # Custom Reveal.js SCSS theme
+├── assets/
+│   ├── fonts/ENSFont-Regular.ttf
+│   └── tex/presentation-preamble.tex
 ├── diagrams/
 │   ├── quarto-flow.puml         # PlantUML source
 │   └── quarto-flow.svg          # Pre-rendered SVG used by the examples

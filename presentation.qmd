@@ -1,0 +1,164 @@
+---
+title: "Quarto Presentation Workflow"
+subtitle: "presentation.qmd to presentation.pdf and presentation.html"
+author: "Your Name"
+date: today
+format:
+  revealjs:
+    theme: [default, themes/thesis.scss]
+    slide-number: c/t
+    controls: true
+    progress: true
+    hash: true
+    transition: fade
+    footer: "presentation.qmd -> PDF / HTML"
+    code-copy: true
+    code-line-numbers: true
+    highlight-style: github
+  beamer:
+    theme: metropolis
+    pdf-engine: xelatex
+    aspectratio: 169
+    navigation: empty
+    colorlinks: true
+---
+
+# Main Workflow
+
+## One Source, Two Outputs
+
+The core workflow is:
+
+```text
+presentation.qmd
+├── _output/presentation.pdf
+└── _output/presentation.html
+```
+
+Render PDF slides:
+
+```bash
+quarto render presentation.qmd --to beamer
+```
+
+Render Reveal.js HTML:
+
+```bash
+quarto render presentation.qmd --to revealjs
+```
+
+## Toolchain
+
+| Output | Quarto target | File | Required tools |
+|---|---|---|---|
+| PDF slides | `beamer` | `presentation.pdf` | Quarto, TinyTeX, XeLaTeX |
+| HTML slides | `revealjs` | `presentation.html` | Quarto |
+| SVG diagrams | referenced asset | `.svg` | PlantUML or Kroki |
+
+## Columns
+
+:::: {.columns}
+
+::: {.column width="48%"}
+### Source
+
+```yaml
+format:
+  revealjs:
+    theme: [default, themes/thesis.scss]
+  beamer:
+    theme: metropolis
+```
+:::
+
+::: {.column width="48%"}
+### Commands
+
+```bash
+quarto render presentation.qmd --to revealjs
+quarto render presentation.qmd --to beamer
+```
+:::
+
+::::
+
+# Content Patterns
+
+## Incremental List
+
+::: incremental
+- Install Quarto.
+- Install TinyTeX for Beamer PDF output.
+- Write `presentation.qmd`.
+- Render explicit targets while learning.
+:::
+
+## Table
+
+| Task | macOS / Linux | Windows PowerShell |
+|---|---|---|
+| Check Quarto | `quarto check` | `quarto check` |
+| Render HTML | `quarto render presentation.qmd --to revealjs` | `quarto render presentation.qmd --to revealjs` |
+| Render PDF | `quarto render presentation.qmd --to beamer` | `quarto render presentation.qmd --to beamer` |
+
+## Figure from PlantUML
+
+![Quarto rendering pipeline](diagrams/quarto-flow.svg){#fig-flow fig-alt="A flow diagram from QMD source through Quarto to HTML slides and PDF."}
+
+Keep the editable source in `diagrams/quarto-flow.puml` and commit the rendered
+`diagrams/quarto-flow.svg`.
+
+## Callout
+
+::: {.callout-note}
+## PDF target name
+
+For slide decks, use `--to beamer` to produce `presentation.pdf`. Use `--to pdf`
+for article-style PDFs.
+:::
+
+## Quote
+
+> A clean Quarto project should make the render target obvious from the source
+> filename, the front matter, and the command line.
+
+# Code and Math
+
+## Code
+
+```python
+from pathlib import Path
+
+source = Path("presentation.qmd")
+print(source.with_suffix(".html"))
+print(source.with_suffix(".pdf"))
+```
+
+## Math
+
+$$
+\text{output} =
+\begin{cases}
+\text{presentation.html}, & \text{target = revealjs} \\
+\text{presentation.pdf}, & \text{target = beamer}
+\end{cases}
+$$
+
+# Notes
+
+## Speaker Notes
+
+This slide has speaker notes in Reveal.js.
+
+::: notes
+Open speaker view in Reveal.js with the S key. Notes are useful for delivery
+prompts that should not appear on the projected slide.
+:::
+
+## Checklist
+
+- `presentation.qmd` exists at the repo root.
+- `themes/thesis.scss` customizes Reveal.js.
+- `diagrams/quarto-flow.svg` is generated from PlantUML.
+- `_output/presentation.html` is the HTML deck.
+- `_output/presentation.pdf` is the Beamer PDF deck.

@@ -1,8 +1,27 @@
-# 案例：`解析中國大陸圍台軍演` 的 `presentation.pdf` 產生方式
+# 補充案例：模板專案中的 `presentation.pdf` 產生方式
 
-這份案例說明一個實際 Quarto Beamer 專案如何產生簡報 PDF。它不是直接在
-repo 根目錄執行 `quarto render work/presentation.qmd`，而是用專案自己的
-`scripts/build.py` 統一處理 metadata、模板、輸出檔名與複製位置。
+主流程請先看 [`main-flow.md`](main-flow.md)：一個 `presentation.qmd`
+可以直接 render 成：
+
+```text
+presentation.qmd
+├── _output/presentation.pdf
+└── _output/presentation.html
+```
+
+這份補充案例說明另一種較完整的模板化專案流程。`解析中國大陸圍台軍演`
+專案仍然是以 `work/presentation.qmd` 作為投影片來源；差別是它不直接在
+repo 根目錄執行 `quarto render work/presentation.qmd`，而是用
+`scripts/build.py` 先產生 `work/_quarto.yml`，再從 `work/` 執行
+`quarto render`。
+
+因此概念上仍是：
+
+```text
+work/presentation.qmd -> work/_output/presentation.pdf
+```
+
+只是 build script 另外負責 metadata 套版、輸出檔名與複製位置。
 
 ## 專案結構
 
@@ -229,6 +248,35 @@ Output created: _output/presentation.pdf
 第一個 `_output/presentation.pdf` 是 Quarto 在 `work/_output/` 產生的檔案。
 第二個 `_output/presentation-2026-prc-taiwan-encirclement-drills.pdf` 是
 `scripts/build.py` 複製到 repo 根目錄後的交付檔。
+
+## 如果同一份 `presentation.qmd` 也要輸出 HTML
+
+若這類模板專案要讓同一份 `presentation.qmd` 同時產生
+`presentation.pdf` 與 `presentation.html`，需要讓產生後的
+`work/_quarto.yml` 同時包含 `beamer` 與 `revealjs`：
+
+```yaml
+format:
+  beamer:
+    pdf-engine: xelatex
+    theme: metropolis
+  revealjs:
+    theme: [default, ../themes/thesis.scss]
+```
+
+然後從 `work/` 目錄 render 指定 target：
+
+```bash
+quarto render presentation.qmd --to beamer
+quarto render presentation.qmd --to revealjs
+```
+
+輸出會是：
+
+```text
+work/_output/presentation.pdf
+work/_output/presentation.html
+```
 
 ## Render Draft
 

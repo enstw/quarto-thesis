@@ -14,6 +14,7 @@ file, render it, and then gradually add themes, diagrams, and slide features.
 ```text
 .
 ├── _quarto.yml                  # Project-level render defaults
+├── presentation.qmd             # Main flow: source -> PDF / Reveal.js HTML
 ├── examples/
 │   └── dual-output.qmd          # Same source rendered to PDF or Reveal.js
 ├── slides/
@@ -28,6 +29,7 @@ file, render it, and then gradually add themes, diagrams, and slide features.
 │   └── plantuml-to-svg.ps1      # Windows PowerShell helper
 └── docs/
     ├── install.md
+    ├── main-flow.md
     ├── case-study-presentation-pdf.md
     ├── themes.md
     └── plantuml.md
@@ -47,16 +49,23 @@ Install TinyTeX for PDF rendering:
 quarto install tinytex
 ```
 
-Render the example PDF:
+Render the main presentation as PDF:
 
 ```bash
-quarto render examples/dual-output.qmd --to pdf
+quarto render presentation.qmd --to beamer
 ```
 
-Render the same source as a Reveal.js HTML presentation:
+Render the same `presentation.qmd` as a Reveal.js HTML presentation:
 
 ```bash
-quarto render examples/dual-output.qmd --to revealjs
+quarto render presentation.qmd --to revealjs
+```
+
+The two primary outputs are:
+
+```text
+_output/presentation.pdf
+_output/presentation.html
 ```
 
 Render the slide-style gallery:
@@ -97,6 +106,7 @@ The scripts try, in order:
 ## Documentation
 
 - [Installation guide](docs/install.md)
+- [Main flow: presentation.qmd to presentation.pdf / presentation.html](docs/main-flow.md)
 - [Case study: how the Taiwan-drills Beamer PDF is generated](docs/case-study-presentation-pdf.md)
 - [Theme browsing and customization](docs/themes.md)
 - [PlantUML to SVG workflow](docs/plantuml.md)

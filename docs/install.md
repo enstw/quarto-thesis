@@ -50,7 +50,7 @@ quarto tools
 Render a PDF:
 
 ```bash
-quarto render examples/dual-output.qmd --to pdf
+quarto render presentation.qmd --to beamer
 ```
 
 ## 3. Render Reveal.js HTML
@@ -58,14 +58,14 @@ quarto render examples/dual-output.qmd --to pdf
 Reveal.js output does not require LaTeX:
 
 ```bash
-quarto render slides/slide-styles.qmd
-quarto preview slides/slide-styles.qmd
+quarto render presentation.qmd --to revealjs
+quarto preview presentation.qmd
 ```
 
 Render a single self-contained HTML file for sharing:
 
 ```bash
-quarto render slides/slide-styles.qmd -M embed-resources:true
+quarto render presentation.qmd --to revealjs -M embed-resources:true
 ```
 
 ## 4. Optional Diagram Dependencies
@@ -97,8 +97,8 @@ scripts/plantuml-to-svg.sh diagrams/quarto-flow.puml diagrams/quarto-flow.svg
 ```bash
 quarto check
 quarto tools
-quarto render examples/dual-output.qmd --to pdf
-quarto render examples/dual-output.qmd --to revealjs
+quarto render presentation.qmd --to beamer
+quarto render presentation.qmd --to revealjs
 quarto render slides/slide-styles.qmd
 ```
 

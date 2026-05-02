@@ -1,0 +1,101 @@
+---
+title: "Quarto Dual Output Example"
+subtitle: "One source file rendered to PDF or Reveal.js"
+author: "Your Name"
+date: today
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    pdf-engine: xelatex
+    geometry:
+      - margin=1in
+  revealjs:
+    theme: [default, ../themes/thesis.scss]
+    slide-number: c/t
+    controls: true
+    progress: true
+    transition: fade
+    footer: "Quarto dual output example"
+execute:
+  echo: false
+---
+
+# Purpose
+
+This file demonstrates a practical Quarto pattern: keep the source in one
+`.qmd` file and render it to different output formats.
+
+Render PDF:
+
+```bash
+quarto render examples/dual-output.qmd --to pdf
+```
+
+Render Reveal.js HTML:
+
+```bash
+quarto render examples/dual-output.qmd --to revealjs
+```
+
+# Basic Markdown
+
+Quarto documents are mostly Markdown with YAML metadata. The same content can
+include prose, lists, tables, figures, math, citations, and code blocks.
+
+## Lists
+
+- Install Quarto.
+- Install TinyTeX for PDF output.
+- Write `.qmd` source.
+- Render with `quarto render`.
+
+## Table
+
+| Output | Command | Main dependency |
+|---|---|---|
+| PDF | `quarto render file.qmd --to pdf` | TinyTeX or another TeX distribution |
+| Reveal.js | `quarto render file.qmd --to revealjs` | Quarto |
+| HTML | `quarto render file.qmd --to html` | Quarto |
+
+# Figure
+
+![A Quarto rendering pipeline generated from PlantUML source.](../diagrams/quarto-flow.svg){#fig-flow fig-alt="A flow diagram from QMD source through Quarto to HTML slides and PDF."}
+
+Figure @fig-flow is kept as SVG so it stays sharp in both HTML and PDF output.
+
+# Math
+
+Inline math uses `$...$`, for example $E = mc^2$.
+
+Display math:
+
+$$
+\hat{\theta} = \arg\min_\theta \sum_{i=1}^{n}(y_i - f_\theta(x_i))^2
+$$
+
+# Code
+
+Static code blocks work in both PDF and Reveal.js:
+
+```python
+from pathlib import Path
+
+source = Path("slides/slide-styles.qmd")
+print(source.suffix)
+```
+
+# Callout
+
+::: {.callout-note}
+## Keep the render command explicit
+
+Use `--to pdf` or `--to revealjs` when a document declares multiple formats.
+That makes the intended output unambiguous.
+:::
+
+# Next Step
+
+Use `slides/slide-styles.qmd` when you want a Reveal.js-specific gallery of
+slide layouts, backgrounds, fragments, notes, code, callouts, and tabsets.

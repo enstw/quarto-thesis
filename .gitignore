@@ -1,0 +1,17 @@
+/.quarto/
+/_freeze/
+/_output/
+*.html
+*.pdf
+*.docx
+*.log
+*.aux
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+*.synctex.gz
+.DS_Store
+
+**/*.quarto_ipynb

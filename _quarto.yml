@@ -1,0 +1,14 @@
+project:
+  type: default
+  output-dir: _output
+  render:
+    - examples/dual-output.qmd
+    - slides/slide-styles.qmd
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    toc: true
+    theme: cosmo

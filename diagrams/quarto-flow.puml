@@ -1,0 +1,16 @@
+@startuml
+title Quarto rendering pipeline
+
+actor Author
+participant "QMD source" as QMD
+participant "Quarto CLI" as Quarto
+participant "Reveal.js" as Reveal
+participant "TinyTeX" as TeX
+
+Author -> QMD: write content
+Author -> Quarto: quarto render
+Quarto -> Reveal: render HTML slides
+Quarto -> TeX: render PDF
+Reveal --> Author: .html
+TeX --> Author: .pdf
+@enduml
